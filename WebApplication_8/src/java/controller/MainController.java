@@ -1,19 +1,24 @@
-package my_servlet;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controller;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author ADMIN
+ * @author tungi
  */
-public class BangCuuChuong extends HttpServlet {
+@WebServlet(name = "MainController", urlPatterns = {"/MainController"})
+public class MainController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,24 +33,14 @@ public class BangCuuChuong extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            BufferedReader bf = new BufferedReader(new Reader("index.html"));
+            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet BangCuuChuong</title>");
+            out.println("<title>Servlet MainController</title>");
             out.println("</head>");
             out.println("<body>");
-            int draven =660;
-            for (int i = 2; i <= 10; i++) {
-                out.println("<h4>Bảng cửu chương " + i + "</h4>");
-                for (int j = 1; j <= 10; j++) {
-                    out.println(i + "*" + j + "=" + (i * j) + "<br/>");
-                }
-                out.println("<hr>");
-            }
-            
-            out.println(draven);
+            out.println("<h1>Servlet MainController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
