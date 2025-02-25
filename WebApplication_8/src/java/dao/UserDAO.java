@@ -9,6 +9,7 @@ package dao;
 
 import dto.UserDTO;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -77,11 +78,12 @@ public class UserDAO implements IDAO<UserDTO, String> {
 
     @Override
     public UserDTO readById(String id) {
-        String sql = "SELECT * FROM tblUsers WHERE userID = N'" + id + "'";
+        String sql = "SELECT * FROM tblUsers WHERE userID = ?";
         try {
             Connection conn = DBUtils.getConnection();
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, id);
+            ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 UserDTO user = new UserDTO(
                         rs.getString("userID"),
