@@ -35,11 +35,6 @@ public class MainController extends HttpServlet {
         UserDTO user = getUser(strUserID);
         System.out.println(user);
         return user != null && user.getPassword().equals(strPassword);
-//        if (user != null && user.getPassword().equals(strPassword)) {
-//            return true;
-//        } else {
-//            return false;
-//        }
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -64,7 +59,7 @@ public class MainController extends HttpServlet {
                 }
             }
         } catch (Exception e) {
-            log("Error in MainController: " + e.toString())  ; 
+            log("Error in MainController: " + e.toString());
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
